@@ -1,5 +1,6 @@
 package JavaLambdaExpressions;
 
+import java.lang.foreign.Arena;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -10,7 +11,8 @@ interface Mine{
 }
 
 public class App {
-    private static final String nums = nums;
+    private static final int nums1 = 200;
+
     public static void main(String[] args) throws Exception {
         //part1
         Printable add = (a, b) -> a + b;
@@ -24,14 +26,20 @@ public class App {
 
         
         //part 3
-        Predicate<Mine> areTheseEqual = equal -> nums.equals(nums);
-        if (nums.equals(areTheseEqual)) {
-            System.out.println("The numbers are equal");
+        Predicate<Integer> isThisLarger = (nums1) -> nums1 > 100;
+        if (isThisLarger.test(nums1) ) {
+            System.out.println("The number is large");
+        } else {
+            System.out.println("It is smaller");
         }
 
-        Function<Integer, Integer> times = a -> a*a;
+        Function<Integer, Integer> times = (q) -> q * 3;
+        int q = 3;
+        System.out.println(times.apply(q));
+
     }
     static int printThing(Printable thing){
         return thing.print(5, 5);
     } 
+    
 }
